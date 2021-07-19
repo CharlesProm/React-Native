@@ -1,0 +1,145 @@
+// const API = "http://192.168.1.108:4000/";
+const API = "https://backend-tasky.herokuapp.com/";
+
+
+export const getUserData = async (id)=>{
+  const res = await fetch(`${API}userdata/${id}`,{
+    method:'GET'
+  })
+  return await res.json()
+}
+
+export const getUser = async (user, pass, navigation) => {
+  const data = { user, pass }
+  // console.log(user)
+  const res = await fetch(`${API}user/`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        return window.alert(data.error)
+      } else {
+        navigation.navigate('UserScreen', { user: data.user, id: data.id })
+        return 0;
+      }
+    })
+    .catch(err => console.error(err));
+}
+
+export const registerUser = async (newUser) => {
+  const res = await fetch(`${API}register`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newUser),
+  });
+  return await res.json();
+};
+
+export const getTask = async (id) => {
+  const res = await fetch(`${API}task/${id}`, {
+    method: "GET",
+  });
+  return await res.json();
+}
+
+export const getAllTasks = async (id) => {
+  // window.alert(id)
+  const res = await fetch(`${API}${id}/dashboard`, {
+    method: "GET",
+  })
+  return await res.json()
+}
+
+export const registerTask = async (task,expire,reminder,notifid) => {
+  const data = {task,expire,reminder,notifid}
+  const res = await fetch(`${API}task`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then(response => response.json())
+    .then(data => {
+      window.alert('Task Create')
+      return 0;
+    })
+    .catch(err => console.error(err));
+}
+
+export const deleteTask = async (id, navigation) => {
+  const res = await fetch(`${API}task/${id}`, {
+    method: 'DELETE'
+  })
+  window.alert('Task Delete')
+  if(navigation != null){
+    return await navigation.goBack()
+  }else{
+    window.alert('Task Expire')
+  }
+}
+
+export const updateTask = async (task,expire,reminder,notifid) => {
+  const data = {task,expire,reminder,notifid}
+  const res = await fetch(`${API}task/${task.id}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  window.alert('Task Update')
+  return res.json();
+}
+
+
+export const completeTask = async (task) => {
+  const res = await fetch(`${API}completeTask`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(task),
+  });
+  window.alert('Task Complete!')
+  return res.json();
+}
+
+export const pinTask = async (id,pin)=>{
+  const data = {id,pin}
+  const res = await fetch(`${API}pintask`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  return res.json();
+}
+
+export const searchingTask = async (id,title)=>{
+  const res = await fetch(`${API}searchingtask/${id}/${title}`,{
+    method:'GET'
+  })
+  return res.json()
+}
+
+export const searchImage = async (name)=>{
+  const res = await fetch(`${API}getimage/${name}`,{
+    method:'GET'
+  })
+  return await res.json()
+}
