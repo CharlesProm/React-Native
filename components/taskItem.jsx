@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
-// import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { completeTask, pinTask,deleteTask } from './api';
 import * as Notifications from 'expo-notifications';
@@ -17,7 +16,6 @@ const taskItem = (props) => {
         if(moment(aux1).isBefore(aux2)){
             deleteTask(props.task.id,null)
         }
-        // console.log(moment())
     }, [])
 
     const navigation = useNavigation()
@@ -53,9 +51,7 @@ const taskItem = (props) => {
                     } />}
                 </TouchableOpacity>
                 <TouchableOpacity onPress={completeOnPress}>
-                    {/* <Text>Done</Text> */}
                     <AntDesign name="check" size={24} color="#91C788" />
-                    {/* <Text style={{transform: [{rotateY: '180deg'}]}}>This should be flipped</Text> */}
                 </TouchableOpacity>
             </View>
         </View>
@@ -75,7 +71,6 @@ const styles = StyleSheet.create({
     },
     dataContainer: {
         paddingVertical: 10,
-        // backgroundColor: '#444444',
         justifyContent: 'center',
         width: '70%',
     },
@@ -84,7 +79,6 @@ const styles = StyleSheet.create({
         width: '30%',
         height: '70%',
         paddingHorizontal: 5,
-        // backgroundColor: '#91C788',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -93,3 +87,4 @@ const styles = StyleSheet.create({
 })
 
 export default taskItem
+
