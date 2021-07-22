@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 
 const Tag = (props) => {
@@ -18,7 +18,6 @@ const Tag = (props) => {
             style={styles.container}>
             <View style={
                 props.task.tag === props.name ? styles.selectedCircle : styles.circle
-                // styles.circle
             }></View>
             <Text style={styles.tagText}>{props.name}</Text>
         </TouchableOpacity>
@@ -27,7 +26,6 @@ const Tag = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        // backgroundColor: 'blue',
         display: 'flex',
         flexDirection: 'row',
         width: '23%',
@@ -36,7 +34,6 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         borderWidth: 1,
         borderColor: '#eee',
-        // backgroundColor:'#eee',
         width: 10,
         height: 10,
         alignSelf: 'center',
@@ -56,3 +53,4 @@ const styles = StyleSheet.create({
 })
 
 export default Tag
+
