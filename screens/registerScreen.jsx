@@ -1,34 +1,21 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Dimensions, Alert, Button } from 'react-native'
 import { registerUser } from "../components/api";
 
 var width = Dimensions.get('window').width; //full width
 
 const registerScreen = ({ navigation, route }) => {
-
-    // navigation.setOptions({
-    //     header: () => ({
-    //         left: <Left />,
-    //     }),
-    // })
-    // useEffect(()=>{
-    // })
-
     const [newUser, onChangeNewUser] = React.useState({
         username: "",
         password: "",
         confirmPassword: "",
     });
-
     const alertPassword = () => {
         Alert.alert('Passwords dont match')
         window.alert('Passwords dont match')
     }
-
     const handleChange = (name, value) => onChangeNewUser({ ...newUser, [name]: value });
-
     const handleSubmit = async () => {
-
         if (newUser.password != newUser.confirmPassword) {
             console.log('error');
             return alertPassword()
@@ -81,15 +68,6 @@ const registerScreen = ({ navigation, route }) => {
     )
 
 }
-
-const Left = () => {
-    return (
-        <View>
-            <Text>Register</Text>
-        </View>
-    )
-}
-
 const styles = StyleSheet.create({
     input: {
         height: 40,
@@ -121,9 +99,7 @@ const styles = StyleSheet.create({
         paddingVertical:10,
         alignItems: 'center',
         backgroundColor: '#30475E',
-        // borderColor: '#122551',
         color: '#fff',
-        // borderWidth: 1,
         borderRadius: 50,
         width: 150,
     },
@@ -134,5 +110,4 @@ const styles = StyleSheet.create({
         marginTop: 5,
     }
 });
-
 export default registerScreen
