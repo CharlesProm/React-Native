@@ -1,19 +1,12 @@
 import React, { useEffect } from 'react'
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert } from 'react-native'
 import { getUser} from "../components/api";
-import * as Notifications from 'expo-notifications'
-
-
 
 const HomeScreen = ({ navigation, route }) => {
-
-
     const [logUser, setLogUser] = React.useState({
         username: "",
         password: "",
     });
-
-
     useEffect(() => {
         if (route.params && route.params.goBack) {
             setLogUser({ username: '', password: '', })
@@ -23,7 +16,6 @@ const HomeScreen = ({ navigation, route }) => {
             route.params.succes = null
         }
     })
-
     const loginPress = () => {
         getUser(logUser.username, logUser.password,navigation)
         setLogUser({username:'',password:''})
@@ -32,8 +24,6 @@ const HomeScreen = ({ navigation, route }) => {
         setLogUser({username:'',password:''})
         navigation.navigate('RegisterScreen')
     }
-
-
     const handleChange = (name, value) => setLogUser({ ...logUser, [name]: value });
 
     return (
@@ -89,7 +79,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',
-        // width: width,
         margin: 'auto',
         backgroundColor: '#F05454',
     },
@@ -115,7 +104,5 @@ const styles = StyleSheet.create({
         marginTop: 5,
     }
 });
-
-
-
 export default HomeScreen
+
