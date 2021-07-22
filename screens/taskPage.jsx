@@ -10,13 +10,11 @@ import Tag from '../components/tag';
 import * as Notifications from 'expo-notifications';
 
 const taskPage = ({ navigation, route }) => {
-
-
     const editing = route.params.editing
     const [confirmTime, setconfirmTime] = useState()
     const [expireDateShow, setExpireDateShow] = useState(false)
     const [reminderShow, setReminderShow] = useState(false)
-    const [imageShow, setimageShow] = useState(false)
+    // const [imageShow, setimageShow] = useState(false)
     const [task, setTask] = useState({
         title: "",
         description: "",
@@ -72,7 +70,6 @@ const taskPage = ({ navigation, route }) => {
             }
             //Create Notification Id variable
             let id
-
             if (task.notifid != null) {
                 /// Si hay una notificacion antigua ------>
                 if (task.notifytime != confirmTime) {
@@ -97,15 +94,11 @@ const taskPage = ({ navigation, route }) => {
         }
         navigation.goBack()
     }
-
-
-
     const pressDelete = async () => {
         if (task.notifid != null) await Notifications.cancelScheduledNotificationAsync(task.notifid)
         deleteTask(task.id, navigation)
     }
     const handleChange = async (name, value) => setTask({ ...task, [name]: value });
-
     useEffect(() => {
         if (editing) {
             navigation.setOptions({ headerTitle: 'Updating a task' });
@@ -124,7 +117,6 @@ const taskPage = ({ navigation, route }) => {
             navigation.setOptions({ headerTitle: 'Creating a task' })
         }
     }, [])
-
     const changeBool = async (item, func) => {
         if (item) {
             func(false)
@@ -132,7 +124,6 @@ const taskPage = ({ navigation, route }) => {
             func(true)
         }
     }
-
     return (
         <ScrollView
             scrollEnabled={true}
@@ -162,7 +153,7 @@ const taskPage = ({ navigation, route }) => {
                 <Tag setTag={setTask} task={task} name={'Friends'} />
                 <Tag setTag={setTask} task={task} name={'Job'} />
             </View>
-            {/* ///////////////////////////////////// EXPIRE DATE SHOW */}
+            {/* ///////////////////////////////////// EXPIRE DATE */}
             <TouchableOpacity onPress={() => { changeBool(expireDateShow, setExpireDateShow) }} style={styles.subtitleSelect}>
                 <Text style={[styles.Text, styles.textExpireDate]}>
                     Expire date
@@ -173,7 +164,7 @@ const taskPage = ({ navigation, route }) => {
                 <View style={styles.textInputYMDContainer}>
                     <DatePicker mode={'datetime'} task={task} setTask={setTask} ></DatePicker>
                 </View> : null}
-            {/* ///////////////////////////////////// REMINDER SHOW */}
+            {/* ///////////////////////////////////// REMINDER */}
             <TouchableOpacity onPress={() => { changeBool(reminderShow, setReminderShow) }} style={styles.subtitleSelect}>
                 <Text style={[styles.Text, styles.textExpireDate]}>
                     Reminder
@@ -184,7 +175,7 @@ const taskPage = ({ navigation, route }) => {
                 <View style={styles.textInputYMDContainer}>
                     <TimePicker task={task} setTask={setTask}></TimePicker>
                 </View> : null}
-            {/* ///////////////////////////////////// IMAGE UPLOAD SHOW */}
+            {/* ///////////////////////////////////// IMAGE UPLOAD */}
             {/* <TouchableOpacity onPress={() => { changeBool(imageShow, setimageShow) }} style={styles.subtitleSelect}>
                 <Text style={[styles.Text, styles.textExpireDate]}>
                     Image Upload
@@ -215,8 +206,6 @@ const taskPage = ({ navigation, route }) => {
         </ScrollView>
     )
 }
-
-
 const styles = StyleSheet.create({
     userScreenContainer: {
         flex: 1,
@@ -256,7 +245,6 @@ const styles = StyleSheet.create({
         width: '40%',
         marginTop: 20,
         borderRadius: 50,
-        // backgroundColor: '#52734D',
         borderWidth: 1,
         borderColor: '#eee',
         alignSelf: 'center',
@@ -294,7 +282,6 @@ const styles = StyleSheet.create({
         width: 200,
         height: 200,
     }, tagsContainer: {
-        // backgroundColor:'red',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-evenly',
@@ -302,11 +289,9 @@ const styles = StyleSheet.create({
     }, circle: {
         width: 10,
         height: 10,
-        // backgroundColor:'#eee',
         borderRadius: 50,
         borderColor: '#eee',
         borderWidth: 1,
-        // alignSelf:'center',
         marginHorizontal: 15,
     }, selectedCircle: {
         width: 10,
@@ -320,17 +305,14 @@ const styles = StyleSheet.create({
         height: 50,
         display: 'flex',
         flexDirection: 'row',
-        // backgroundColor:'blue',
         alignItems: 'center',
     }, btnContainer: {
         display: 'flex',
         justifyContent: 'space-evenly',
-        // backgroundColor:'red',
         flexDirection: 'row',
         marginTop: 10,
         marginBottom: 50,
     }, btnDelete: {
-        // backgroundColor:'#663F3F',
     }
 })
 
