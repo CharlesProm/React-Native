@@ -11,7 +11,6 @@ export const getUserData = async (id)=>{
 
 export const getUser = async (user, pass, navigation) => {
   const data = { user, pass }
-  // console.log(user)
   const res = await fetch(`${API}user/`, {
     method: "POST",
     headers: {
@@ -52,7 +51,6 @@ export const getTask = async (id) => {
 }
 
 export const getAllTasks = async (id) => {
-  // window.alert(id)
   const res = await fetch(`${API}${id}/dashboard`, {
     method: "GET",
   })
