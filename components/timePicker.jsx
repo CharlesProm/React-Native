@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet, Platform, TouchableHighlight } from 'react-native'
+import React, {useState } from 'react'
+import { View, Text, TouchableOpacity, StyleSheet} from 'react-native'
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from 'moment';
 
@@ -8,14 +8,6 @@ const TimePicker = (props) => {
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
     const showDatePicker = () => {
-        if(props.task.notifytime != null){
-            let aux = props.task.notifytime.split(' ')
-            let fixing = aux[0].split(':')
-            const hours = fixing[0]
-            const minutes = fixing[1]
-            const type = aux[1]
-            // console.log(hours + ":" + minutes + " " + type)
-        }
         setDatePickerVisibility(true);
     };
 
@@ -25,7 +17,6 @@ const TimePicker = (props) => {
     const handleChange = (name, value) => props.setTask({ ...props.task, [name]: value });
     const handleConfirm = (date) => {
         const fixDate = moment.utc(date).format('LT')
-        // console.log(fixDate)
         handleChange('notifytime', fixDate)
         hideDatePicker();
     };
@@ -55,7 +46,6 @@ const TimePicker = (props) => {
 
 const styles = StyleSheet.create({
     viewContainer: {
-        // backgroundColor:'red',
         width: '100%',
         marginBottom: 20,
     },
