@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Dimensions, Alert, Button } from 'react-native'
 import { registerUser } from "../components/api";
 
-var width = Dimensions.get('window').width; //full width
+var width = Dimensions.get('window').width;
 
 const registerScreen = ({ navigation, route }) => {
     const [newUser, onChangeNewUser] = React.useState({
