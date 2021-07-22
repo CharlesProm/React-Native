@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet, Platform, TouchableHighlight } from 'react-native'
+import React, {useState } from 'react'
+import { View, Text, TouchableOpacity, StyleSheet} from 'react-native'
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from 'moment';
 
@@ -45,7 +45,6 @@ const DatePicker = (props) => {
 
 const styles = StyleSheet.create({
     viewContainer: {
-        // backgroundColor:'red',
         width: '100%',
         marginBottom: 20,
     },
@@ -66,3 +65,4 @@ const styles = StyleSheet.create({
 })
 
 export default DatePicker
+
