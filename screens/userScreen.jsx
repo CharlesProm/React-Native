@@ -3,24 +3,21 @@ import { View, Text, StyleSheet, TouchableOpacity, FlatList, RefreshControl, Tex
 import { getAllTasks , searchingTask} from '../components/api';
 import TaskItem from '../components/taskItem';
 import { useIsFocused } from '@react-navigation/core';
-import { Ionicons, Entypo, FontAwesome } from '@expo/vector-icons';
+import {Entypo, FontAwesome } from '@expo/vector-icons';
 
 const userScreen = ({ navigation, route }) => {
 
     const [tasks, setTasks] = useState([])
     const [refreshing, setRefreshing] = useState(false)
     const [searchTitle, setsearchTitle] = useState('')
-
     const userId = route.params.id
     const loadTasks = async () => {
         const data = await getAllTasks(userId)
         pinnedFilter(data)
     }
     const pinnedFilter = (data) => {
-
         const normal = []
         const pin = []
-
         data.forEach(element => {
             if (element.pinned == 1) {
                 pin.push(element)
@@ -36,7 +33,6 @@ const userScreen = ({ navigation, route }) => {
     const focused = useIsFocused()
 
     useEffect(() => {
-        // window.alert(route.params.id)
         navigation.setOptions({ headerTitle: route.params.user, });
         loadTasks()
     }, [focused])
@@ -44,13 +40,11 @@ const userScreen = ({ navigation, route }) => {
     useEffect(()=>{
         handleSearching()
     },[searchTitle])
-
     const onRefresh = React.useCallback(async () => {
         setRefreshing(true)
         await loadTasks()
         setRefreshing(false)
     })
-
     const handleSearching = async()=>{
         if(searchTitle == ''){
             loadTasks()
@@ -62,9 +56,6 @@ const userScreen = ({ navigation, route }) => {
     const clearInput=()=>{
         setsearchTitle('')
     }   
-
-
-
     return (
         <View style={styles.userScreenContainer}>
             <View style={styles.searchBarContainer}>
@@ -104,7 +95,6 @@ const userScreen = ({ navigation, route }) => {
         </View>
     )
 }
-
 const styles = StyleSheet.create({
     userScreenContainer: {
         flex: 1,
@@ -133,7 +123,6 @@ const styles = StyleSheet.create({
     searchBarContainer:{
         display:'flex',
         flexDirection:'row',
-        // backgroundColor:'red',
         height:'10%',
         justifyContent:'space-around',
         paddingHorizontal:'7%',
@@ -150,5 +139,4 @@ const styles = StyleSheet.create({
         borderWidth:1,
     }
 })
-
 export default userScreen
