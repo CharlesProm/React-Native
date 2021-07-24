@@ -17,7 +17,6 @@ const registerScreen = ({ navigation, route }) => {
         }
         try {
             await registerUser(newUser);
-            console.log('Fetching c:');
             navigation.navigate("Tasky", { succes: 'You account was created succesfully!!'});
         } catch (error) {
             console.log(error);
