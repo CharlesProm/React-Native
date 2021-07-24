@@ -120,9 +120,10 @@ export const searchingTask = async (id,title)=>{
   return await res.json()
 }
 
-export const searchImage = async (name)=>{
-  const res = await fetch(`${API}getimage/${name}`,{
-    method:'GET'
-  })
-  return await res.json()
-}
+/// Funcion para pedir imagen 
+// export const searchImage = async (name)=>{
+//   const res = await fetch(`${API}getimage/${name}`,{
+//     method:'GET'
+//   })
+//   return await res.json()
+// }
