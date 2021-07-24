@@ -1,10 +1,8 @@
 import React from 'react'
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, Dimensions, Alert, Button } from 'react-native'
-import { registerUser } from "../components/api";
+import { View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native'
+import { registerUser } from "../components/api"
 
-var width = Dimensions.get('window').width;
-
-const registerScreen = ({ navigation, route }) => {
+const registerScreen = ({ navigation }) => {
     const [newUser, onChangeNewUser] = React.useState({
         username: "",
         password: "",
@@ -17,7 +15,7 @@ const registerScreen = ({ navigation, route }) => {
         }
         try {
             await registerUser(newUser);
-            navigation.navigate("Tasky", { succes: 'You account was created succesfully!!'});
+            navigation.navigate("Tasky", { succes: 'You account was created succesfully!!' });
         } catch (error) {
             console.log(error);
         }
@@ -79,7 +77,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',
-        width: width,
+        width: '100%',
         margin: 'auto',
         backgroundColor: '#D54C4C',
     },
@@ -90,7 +88,7 @@ const styles = StyleSheet.create({
     formButton: {
         marginTop: 30,
         padding: 5,
-        paddingVertical:10,
+        paddingVertical: 10,
         alignItems: 'center',
         backgroundColor: '#30475E',
         color: '#fff',
