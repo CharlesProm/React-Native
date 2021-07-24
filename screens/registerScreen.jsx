@@ -10,15 +10,10 @@ const registerScreen = ({ navigation, route }) => {
         password: "",
         confirmPassword: "",
     });
-    const alertPassword = () => {
-        Alert.alert('Passwords dont match')
-        window.alert('Passwords dont match')
-    }
     const handleChange = (name, value) => onChangeNewUser({ ...newUser, [name]: value });
     const handleSubmit = async () => {
         if (newUser.password != newUser.confirmPassword) {
-            console.log('error');
-            return alertPassword()
+            window.alert('Passwords dont match')
         }
         try {
             await registerUser(newUser);
