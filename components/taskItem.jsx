@@ -10,9 +10,6 @@ const taskItem = (props) => {
     useEffect(() => {
         const aux1 = moment.utc(parseInt(props.task.exptime)).format('YYYY-MM-DD')
         const aux2 = moment.utc().format('YYYY-MM-DD')
-        console.log(aux1)
-        console.log(aux2)
-        console.log(moment(aux1).isBefore(aux2))
         if(moment(aux1).isBefore(aux2)){
             deleteTask(props.task.id,null)
         }
