@@ -1,7 +1,6 @@
 // const API = "http://192.168.1.108:4000/";
 const API = "https://backend-tasky.herokuapp.com/";
 
-
 export const getUserData = async (id)=>{
   const res = await fetch(`${API}userdata/${id}`,{
     method:'GET'
@@ -19,16 +18,7 @@ export const getUser = async (user, pass, navigation) => {
     },
     body: JSON.stringify(data),
   })
-    .then(response => response.json())
-    .then(data => {
-      if (data.error) {
-        return window.alert(data.error)
-      } else {
-        navigation.navigate('UserScreen', { user: data.user, id: data.id })
-        return 0;
-      }
-    })
-    .catch(err => console.error(err));
+    return navigation.navigate('UserScreen', { user: data.user, id: data.id })
 }
 
 export const registerUser = async (newUser) => {
@@ -67,12 +57,7 @@ export const registerTask = async (task,expire,reminder,notifid) => {
     },
     body: JSON.stringify(data),
   })
-    .then(response => response.json())
-    .then(data => {
-      window.alert('Task Create')
-      return 0;
-    })
-    .catch(err => console.error(err));
+    return window.alert('Task Create')
 }
 
 export const deleteTask = async (id, navigation) => {
@@ -98,7 +83,7 @@ export const updateTask = async (task,expire,reminder,notifid) => {
     body: JSON.stringify(data),
   });
   window.alert('Task Update')
-  return res.json();
+  return await res.json();
 }
 
 
@@ -112,7 +97,7 @@ export const completeTask = async (task) => {
     body: JSON.stringify(task),
   });
   window.alert('Task Complete!')
-  return res.json();
+  return await res.json();
 }
 
 export const pinTask = async (id,pin)=>{
@@ -125,14 +110,14 @@ export const pinTask = async (id,pin)=>{
     },
     body: JSON.stringify(data),
   });
-  return res.json();
+  return await res.json();
 }
 
 export const searchingTask = async (id,title)=>{
   const res = await fetch(`${API}searchingtask/${id}/${title}`,{
     method:'GET'
   })
-  return res.json()
+  return await res.json()
 }
 
 export const searchImage = async (name)=>{
